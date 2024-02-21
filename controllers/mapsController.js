@@ -140,8 +140,8 @@ exports.update = async (req, res, next) => {
 exports.delete = async (req, res, next) => {
     try {
         // check data from id request params
-        const map = await Map.findByPk(req.params.id)
-        if (!map) {
+        const map = await Map.findAll({ where: { lat: req.params.lat, lng: req.params.lng} } );
+        if (map.length === 0) {
             // set error message
             throw new Error('Data not found');
         }
@@ -149,7 +149,8 @@ exports.delete = async (req, res, next) => {
         // delete row from map table
         Map.destroy({
             where: {
-              id: req.params.id
+                lat: req.params.lat, 
+                lng: req.params.lng
             }
         })
 

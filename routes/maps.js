@@ -29,6 +29,6 @@ router.put('/:id', [
 ], mapsController.update);
 
 // route for delete data to maps table
-router.delete('/:id', mapsController.delete);
+router.delete('/:lat/:lng', mapsController.delete);
 
 module.exports = router;
